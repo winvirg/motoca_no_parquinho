@@ -1,7 +1,7 @@
 public class Pessoa {
     
-    public int idade;
-    public String nome;
+    public int idade = 0;
+    public String nome="";
 
     public Pessoa(String nome, int idade){
         this.nome = nome;

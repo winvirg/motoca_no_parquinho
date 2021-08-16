@@ -1,7 +1,14 @@
 public class Motoca {
     
-
+	private int potencia;
+	private int tempo;
+	private int idade;
+	private String nome="";
+	private boolean temMotorista=false;
+	private String buzina="";
+	
     public Motoca(int potencia){
+    	this.potencia = potencia;
     }
 
     public Pessoa getPessoa() {
@@ -9,30 +16,64 @@ public class Motoca {
     }
 
     public int getTempo() {
-        return -1;
+        return tempo;
     }
 
     public int getPotencia() {
-        return -1;
+        return potencia;
     }
 
     public boolean subir(Pessoa pessoa){
-        return false;
+        if(temMotorista) {
+        	return false;
+        }else {
+        	temMotorista=true;
+        	this.nome=pessoa.getNome();
+        	this.idade=pessoa.getIdade();
+        	return true;
+        }
     }
 
     public boolean descer(){
-        return false;
+        if(!temMotorista) {
+        	return false;
+        }else {
+        	this.tempo=0;
+        	this.idade=0;
+        	this.nome="";
+        	temMotorista=false;
+        	return true;
+        }
     }
 
     public void colocarTempo(int tempo){
-
+    	this.tempo+=tempo;
     }
 
     public boolean dirigir(int tempo){
-            return true;
+            if(temMotorista) {
+	    		if(this.idade<11&&this.tempo>0&&this.tempo>tempo) {
+		            this.tempo-=tempo;
+		           	return true;
+	    		}else {
+	    			this.tempo=0;
+	    			System.out.println("entrou");
+	    			return false;
+	            }
+            }else return false;
     }
 
     public String buzinar(){
-        return null;
+    	if(!temMotorista) {
+    		buzina="";
+    		return buzina;
+    	}else {
+	    	buzina+="P";
+	        for(int i = 0; i< potencia;i++) {
+	        	buzina+="e";
+	        }
+	        buzina+="m";
+	        return buzina;
+    	}
     }
 }
